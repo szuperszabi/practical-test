@@ -1,0 +1,77 @@
+<div *ngFor="let menuItem of menu" class="main">
+  <div *ngFor="let menuList of menuItem.list" class="container">
+    <table class="table" *ngIf="menuList.id === menuItemId">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">
+          <a href="/menu-list">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                 class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </a>
+          <span class="text-center">{{menuList.name}}</span>
+          <span class="text-center">${{menuList.price| number:'1.2-2'}}</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-light small">
+          <img class="rounded-circle" width="80" height="80" src="{{menuList.img_url}}" alt=""><span
+          class="ingredients">({{menuList.ingredients}})</span>
+          <hr>
+        </td>
+      </tr>
+      <tr *ngIf="menuItem.has_crust">
+        <td>
+          <div>
+            <span class="text-light">Crusts </span> <span class="text-light small">(Required)</span>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="menuItem.has_crust">
+        <td>
+          <div class="container">
+            <div *ngFor="let choice of menuList.crust" class="row bg-white rounded">
+              <div class="col-sm-1 form-check checkbox-primary">
+                <input id="{{choice}}" value="{{choice}}" name="crust" type="radio" class="">
+              </div>
+              <label for="{{choice}}" class="col-sm-5">
+                <div class="text-secondary">{{choice}}</div>
+              </label>
+              <hr>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div>
+            <span class="text-light">Extra Toppings </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="container">
+            <div *ngFor="let topping of menuList.topping" class="row bg-white rounded">
+              <div class="col-sm-1 form-check checkbox">
+                <input name="{{topping}}" id="{{topping}}" type="checkbox">
+              </div>
+              <label for="{{topping}}" class="col-sm-8">
+                <div class=" text-secondary">{{topping}}</div>
+              </label>
+
+              <div class="col-sm-1 text-secondary">${{menuList.topping_price| number: '1.2-2'}}</div>
+              <hr>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <table *ngFor="let menuItem of menu" class="table table-hover">
+    <thead>
+    <tr>
+      <th class="text-center" center scope="col">{{menuItem.name}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let menuList of menuItem.list">
+      <td (click)="navigateToDetails(menuList.id)">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2"><img class="rounded" alt="Rounded Image" width="50" height="50"
+                                       src="{{menuList.img_url}}" alt="">
+            </div>
+            <div class="col-sm-8  text-secondary">{{menuList.name}}
+              <div class="text-secondary">({{menuList.ingredients}})</div>
+            </div>
+            <div class="col-sm-2 text-secondary">${{menuList.price | number:'1.2'}}</div>
+
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
